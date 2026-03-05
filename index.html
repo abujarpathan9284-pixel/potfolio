@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Abujar Pathan | Web Developer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap 4.6 (grid only) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 5 (icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <!-- AOS (animate on scroll) -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    /* ===== RESET / GLOBAL ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    :root{
+      /* Apple-ish minimal palette */
+      --bg: #f5f5f7;
+      --card: rgba(255,255,255,0.78);
+      --card2: rgba(255,255,255,0.9);
+      --stroke: rgba(15, 23, 42, 0.08);
+      --text: #0f172a;
+      --muted: rgba(15,23,42,0.68);
+      --muted2: rgba(15,23,42,0.55);
+
+      --blue: #0071e3;    /* Apple-like blue */
+      --blue2:#3b82f6;
+      --shadow: 0 18px 45px rgba(15,23,42,0.10);
+      --shadow2: 0 10px 28px rgba(15,23,42,0.08);
+      --radius: 22px;
+    }
+
+    body{
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(900px 420px at 10% -10%, rgba(0,113,227,.12), transparent 60%),
+        radial-gradient(820px 420px at 90% 0%, rgba(59,130,246,.10), transparent 55%),
+        linear-gradient(180deg, #ffffff 0%, var(--bg) 40%, #ffffff 100%);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ===== TYPOGRAPHY ===== */
+    h1,h2,h3,h4{ font-weight: 800; letter-spacing: -0.03em; }
+    .section-title{
+      font-size: 2.45rem;
+      margin-bottom: 2.8rem;
+      position: relative;
+      display: inline-block;
+      color: var(--text);
+    }
+    .section-title:after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-12px;
+      width:78px;
+      height:4px;
+      border-radius:999px;
+      background: linear-gradient(90deg, var(--blue), var(--blue2));
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar{
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--stroke);
+      padding: 0.9rem 0;
+      transition: all .25s ease;
+    }
+    .navbar .navbar-brand{
+      font-weight: 900;
+      color: var(--text);
+      font-size: 1.35rem;
+      letter-spacing: -0.4px;
+    }
+    .navbar .nav-link{
+      color: rgba(15,23,42,0.74) !important;
+      font-weight: 700;
+      margin: 0 0.55rem;
+      transition: all .2s ease;
+      position: relative;
+    }
+    .navbar .nav-link:hover{
+      color: var(--text) !important;
+      transform: translateY(-1px);
+    }
+    .navbar .nav-link:after{
+      content:"";
+      position:absolute;
+      left:10px; right:10px;
+      bottom:2px;
+      height:2px;
+      border-radius:999px;
+      background: var(--blue);
+      transform: scaleX(0);
+      transform-origin:left;
+      transition: transform .2s ease;
+      opacity:.9;
+    }
+    .navbar .nav-link:hover:after{ transform: scaleX(1); }
+    .navbar-toggler{
+      border:none;
+      background:transparent;
+      color: var(--text);
+      font-size: 1.8rem;
+      outline: none !important;
+    }
+
+    /* ===== HERO ===== */
+    .hero{
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 125px 0 85px;
+      position: relative;
+    }
+    .hero-content h1{
+      font-size: 3.35rem;
+      line-height: 1.12;
+      margin-bottom: .35rem;
+    }
+    .hero-highlight{
+      color: var(--blue);
+      border-bottom: 3px solid rgba(0,113,227,0.25);
+    }
+    .hero-subtitle{
+      font-size: 1.18rem;
+      color: var(--muted);
+      font-weight: 600;
+      margin: 1rem 0 1.2rem;
+    }
+    .hero-lead{
+      color: var(--muted2);
+      max-width: 560px;
+      font-size: 1.05rem;
+    }
+
+    /* Buttons */
+    .btn-custom{
+      background: var(--blue);
+      color: white;
+      padding: 12px 34px;
+      border-radius: 999px;
+      font-weight: 800;
+      border: none;
+      transition: all .2s ease;
+      box-shadow: 0 14px 32px rgba(0,113,227,0.22);
+      display: inline-block;
+    }
+    .btn-custom:hover{
+      background: #056ad6;
+      transform: translateY(-2px);
+      box-shadow: 0 18px 38px rgba(0,113,227,0.28);
+      color: white;
+      text-decoration: none;
+    }
+
+    /* Social icons */
+    .social-links-hero a{
+      color: rgba(15,23,42,0.55);
+      font-size: 1.25rem;
+      margin-right: .9rem;
+      width: 46px;
+      height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid var(--stroke);
+      transition: all .2s ease;
+      box-shadow: 0 10px 22px rgba(15,23,42,0.06);
+    }
+    .social-links-hero a:hover{
+      color: var(--text);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(15,23,42,0.10);
+    }
+
+    /* Hero image */
+    .hero-img-wrapper{
+      position: relative;
+      max-width: 390px;
+      margin: 0 auto;
+    }
+    .hero-img{
+      width: 100%;
+      border-radius: 28px;
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow);
+      transition: transform .35s ease;
+      background: #fff;
+    }
+    .hero-img:hover{ transform: translateY(-6px); }
+
+    /* ===== SECTIONS ===== */
+    .about-section,
+    .exp-section,
+    .contact-section{
+      padding: 100px 0;
+      background: transparent;
+    }
+    .skills-section,
+    .projects-section{
+      padding: 100px 0;
+      background: transparent;
+    }
+
+    /* Apple-like cards */
+    .soft-card{
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow2);
+      backdrop-filter: blur(12px);
+    }
+
+    /* ===== ABOUT ===== */
+    .about-text{ font-size: 1.07rem; color: var(--muted); }
+    .achievement-badge{
+      background: rgba(0,113,227,0.08);
+      border: 1px solid rgba(0,113,227,0.14);
+      padding: 1rem 1.15rem;
+      border-radius: 18px;
+      font-weight: 700;
+      color: rgba(15,23,42,0.82);
+    }
+
+    /* right card */
+    .edu-card{
+      background: var(--card2);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow2);
+      padding: 1.25rem;
+    }
+    .edu-card h5{ font-weight: 900; color: var(--text); }
+
+    /* ===== SKILLS ===== */
+    .skill-tag{
+      background: rgba(255,255,255,0.85);
+      border: 1px solid var(--stroke);
+      padding: .75rem 1.35rem;
+      border-radius: 999px;
+      font-weight: 700;
+      color: rgba(15,23,42,0.78);
+      display: inline-block;
+      margin: .55rem;
+      transition: all .18s ease;
+      box-shadow: 0 10px 22px rgba(15,23,42,0.05);
+    }
+    .skill-tag:hover{
+      background: rgba(0,113,227,0.10);
+      border-color: rgba(0,113,227,0.22);
+      color: var(--text);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(15,23,42,0.08);
+    }
+
+    /* ===== EXPERIENCE ===== */
+    .exp-card{
+      background: rgba(255,255,255,0.85);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow2);
+    }
+    .exp-card h3{ color: var(--text); }
+    .exp-card .company{ color: var(--blue); font-weight: 800; }
+    .badge-primary{
+      background: rgba(0,113,227,0.10) !important;
+      color: var(--blue) !important;
+      border: 1px solid rgba(0,113,227,0.20) !important;
+      font-weight: 800;
+    }
+
+    /* ===== PROJECTS ===== */
+    .project-card{
+      background: rgba(255,255,255,0.86);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow2);
+      transition: all .2s ease;
+      height: 100%;
+    }
+    .project-card:hover{
+      transform: translateY(-10px);
+      box-shadow: 0 24px 55px rgba(15,23,42,0.16);
+      border-color: rgba(0,113,227,0.16);
+    }
+    .project-body{ padding: 1.85rem; color: var(--muted); }
+    .project-title{
+      font-weight: 900;
+      font-size: 1.42rem;
+      margin-bottom: .7rem;
+      color: var(--text);
+    }
+    .tech-badge{
+      background: rgba(15,23,42,0.06);
+      color: rgba(15,23,42,0.78);
+      border: 1px solid rgba(15,23,42,0.08);
+      padding: .32rem .9rem;
+      border-radius: 999px;
+      font-size: .8rem;
+      font-weight: 700;
+    }
+
+    /* ===== CONTACT ===== */
+    .contact-info-item{
+      display:flex;
+      align-items:center;
+      margin-bottom: 1.25rem;
+    }
+    .contact-icon{
+      width: 52px; height: 52px;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid var(--stroke);
+      border-radius: 50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color: var(--blue);
+      font-size: 1.25rem;
+      margin-right: 1rem;
+      box-shadow: 0 10px 22px rgba(15,23,42,0.05);
+    }
+    .contact-detail a{
+      color: rgba(15,23,42,0.80);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .contact-detail a:hover{ color: var(--text); text-decoration: underline; }
+
+    .social-contact a{
+      display:inline-block;
+      width: 46px; height: 46px;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid var(--stroke);
+      border-radius: 50%;
+      text-align: center;
+      line-height: 46px;
+      color: rgba(15,23,42,0.70);
+      margin-right: .7rem;
+      transition: all .18s ease;
+      box-shadow: 0 10px 22px rgba(15,23,42,0.05);
+    }
+    .social-contact a:hover{
+      transform: translateY(-2px);
+      color: var(--text);
+      box-shadow: 0 14px 28px rgba(15,23,42,0.10);
+    }
+
+    /* Forms */
+    .form-control{
+      background: rgba(255,255,255,0.9);
+      border: 1px solid var(--stroke);
+      color: rgba(15,23,42,0.85);
+      border-radius: 18px;
+      box-shadow: none !important;
+    }
+    .form-control::placeholder{ color: rgba(15,23,42,0.45); }
+    .form-control:focus{
+      border-color: rgba(0,113,227,0.35);
+      box-shadow: 0 0 0 .2rem rgba(0,113,227,0.12) !important;
+    }
+
+    /* ===== FOOTER ===== */
+    footer{
+      background: rgba(255,255,255,0.72);
+      border-top: 1px solid var(--stroke);
+      color: rgba(15,23,42,0.60);
+      text-align: center;
+      padding: 2rem 0;
+      backdrop-filter: blur(14px);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px){
+      .hero-content h1{ font-size: 2.55rem; }
+      .section-title{ font-size: 2.05rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">Abujar Pathan</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+
+        <!-- ✅ RESUME DOWNLOAD (Navbar) -->
+        <li class="nav-item">
+          <a class="nav-link" href="resume.pdf" download>
+            Resume <i class="fas fa-download ml-1"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 hero-content" data-aos="fade-up">
+        <h1>Abujar <span class="hero-highlight">Pathan</span></h1>
+        <div class="hero-subtitle">Web Developer • Full-Stack Developer</div>
+        <p class="mb-4 hero-lead">Detail-oriented developer with internship experience in full-stack development. Skilled in Node.js, Express.js, SQL, and modern front-end technologies.</p>
+        <div class="mb-4 social-links-hero">
+          <a href="https://www.linkedin.com/in/abujar-pathan-2a0a372b8" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com/abujarpathan9284-pixel" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="mailto:abujarpathan9284@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+
+        <!-- ✅ RESUME DOWNLOAD (Hero) -->
+        <a href="resume.pdf" download class="btn-custom mr-3">
+          <i class="fas fa-download mr-2"></i>Download Resume
+        </a>
+
+        <a href="#contact" class="btn-custom">Let's talk <i class="fas fa-arrow-right ml-2"></i></a>
+      </div>
+      <div class="col-lg-6 text-center mt-5 mt-lg-0" data-aos="fade-left">
+        <div class="hero-img-wrapper">
+          <!-- Replace with your actual photo -->
+          <img src="abujarp.jpeg" alt="Abujar Pathan" class="hero-img">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="about-section" id="about">
+  <div class="container">
+    <h2 class="section-title" data-aos="fade-right">About Me</h2>
+    <div class="row">
+      <div class="col-lg-8" data-aos="fade-up">
+        <p class="about-text">I am a motivated web developer currently pursuing a BBA in Computer Application at K.G. Munoth Arts & Commerce College (2023–present). Fluent in English, Hindi, and Marathi, I enjoy building responsive and scalable web applications that solve real problems.</p>
+        <p class="about-text mt-3">During my internship at A2Z IT Hub, I've honed my skills in both front-end and back-end development, delivering client websites and full-stack features.</p>
+        <div class="achievement-badge mt-4">
+          <i class="fas fa-trophy text-warning mr-2"></i> <strong>Key Achievement:</strong> Successfully developed and deployed two full-stack web applications, improving functionality and user experience.
+        </div>
+      </div>
+      <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-left">
+        <div class="edu-card">
+          <h5 class="mb-3"><i class="fas fa-graduation-cap" style="color:var(--blue)"></i> Education</h5>
+          <p><strong>BBA (Computer Application)</strong><br>K.G. Munoth Arts & Commerce College<br>07/2023 – Present</p>
+          <h5 class="mb-3 mt-4"><i class="fas fa-language" style="color:var(--blue)"></i> Languages</h5>
+          <p>English (Fluent) · Hindi (Native) · Marathi (Fluent)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS SECTION -->
+<section class="skills-section" id="skills">
+  <div class="container">
+    <h2 class="section-title" data-aos="fade-right">Technical Skills</h2>
+    <div class="text-center" data-aos="fade-up">
+      <span class="skill-tag">HTML5</span>
+      <span class="skill-tag">CSS3</span>
+      <span class="skill-tag">JavaScript (ES6+)</span>
+      <span class="skill-tag">Bootstrap</span>
+      <span class="skill-tag">Node.js</span>
+      <span class="skill-tag">Express.js</span>
+      <span class="skill-tag">SQL / MySQL</span>
+      <span class="skill-tag">Git & GitHub</span>
+      <span class="skill-tag">Responsive Design</span>
+      <span class="skill-tag">VS Code</span>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE SECTION -->
+<section class="exp-section" id="experience">
+  <div class="container">
+    <h2 class="section-title" data-aos="fade-right">Internship</h2>
+    <div class="exp-card" data-aos="fade-up">
+      <div class="d-flex flex-wrap align-items-center justify-content-between mb-3">
+        <h3 class="mb-0">Web Developer Intern</h3>
+        <span class="badge badge-primary px-3 py-2">Jan 2026 – Present</span>
+      </div>
+      <p class="company mb-3"><i class="fas fa-building mr-2"></i>A2Z IT Hub, Ahilyanagar</p>
+      <ul class="list-unstyled">
+        <li class="mb-2"><i class="fas fa-check-circle mr-2" style="color:var(--blue)"></i>Developed and maintained responsive client websites using HTML, CSS, JavaScript, and Bootstrap.</li>
+        <li class="mb-2"><i class="fas fa-check-circle mr-2" style="color:var(--blue)"></i>Built backend functionality with Node.js and Express.js.</li>
+        <li class="mb-2"><i class="fas fa-check-circle mr-2" style="color:var(--blue)"></i>Integrated MySQL databases and implemented authentication systems.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS SECTION -->
+<section class="projects-section" id="projects">
+  <div class="container">
+    <h2 class="section-title" data-aos="fade-right">Projects</h2>
+    <div class="row">
+      <div class="col-md-6 mb-4" data-aos="zoom-in">
+        <div class="project-card">
+          <div class="project-body">
+            <h3 class="project-title">Ultraz E-Commerce Website</h3>
+            <p>Full-stack e-commerce platform with product management, shopping cart, and order processing.</p>
+            <div class="project-tech">
+              <span class="tech-badge">HTML</span>
+              <span class="tech-badge">CSS</span>
+              <span class="tech-badge">Bootstrap</span>
+              <span class="tech-badge">JavaScript</span>
+              <span class="tech-badge">Node.js</span>
+              <span class="tech-badge">Express.js</span>
+              <span class="tech-badge">MySQL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="100">
+        <div class="project-card">
+          <div class="project-body">
+            <h3 class="project-title">DropXpress – Transport Management</h3>
+            <p>System to manage vehicles, drivers, trips, and profit/loss analytics for transport businesses.</p>
+            <div class="project-tech">
+              <span class="tech-badge">Node.js</span>
+              <span class="tech-badge">Express.js</span>
+              <span class="tech-badge">MySQL</span>
+              <span class="tech-badge">HTML</span>
+              <span class="tech-badge">CSS</span>
+              <span class="tech-badge">Bootstrap</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="200">
+        <div class="project-card">
+          <div class="project-body">
+            <h3 class="project-title">Islamic Educational Portal</h3>
+            <p>Responsive portal providing Islamic learning resources, articles, and educational content.</p>
+            <div class="project-tech">
+              <span class="tech-badge">HTML</span>
+              <span class="tech-badge">CSS</span>
+              <span class="tech-badge">Bootstrap</span>
+              <span class="tech-badge">JavaScript</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="300">
+        <div class="project-card">
+          <div class="project-body">
+            <h3 class="project-title">Healthy Life Wellness Center</h3>
+            <p>Wellness website showcasing yoga, meditation, and fitness services with a modern design.</p>
+            <div class="project-tech">
+              <span class="tech-badge">HTML</span>
+              <span class="tech-badge">CSS</span>
+              <span class="tech-badge">Bootstrap</span>
+              <span class="tech-badge">JavaScript</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <h2 class="section-title" data-aos="fade-right">Get In Touch</h2>
+    <div class="row">
+      <div class="col-lg-6" data-aos="fade-up">
+        <div class="contact-info-item">
+          <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+          <div class="contact-detail"><a href="tel:+919021615011">+91-9021615011</a></div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+          <div class="contact-detail"><a href="mailto:abujarpathan9284@gmail.com">abujarpathan9284@gmail.com</a></div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon"><i class="fab fa-linkedin-in"></i></div>
+          <div class="contact-detail"><a href="https://www.linkedin.com/in/abujar-pathan-2a0a372b8" target="_blank">linkedin.com/in/abujar-pathan</a></div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon"><i class="fab fa-github"></i></div>
+          <div class="contact-detail"><a href="https://github.com/abujarpathan9284-pixel" target="_blank">github.com/abujarpathan9284-pixel</a></div>
+        </div>
+        <div class="social-contact mt-4">
+          <a href="https://www.linkedin.com/in/abujar-pathan-2a0a372b8" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com/abujarpathan9284-pixel" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="mailto:abujarpathan9284@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+
+      <div class="col-lg-6 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="100">
+        <form onsubmit="sendMessage(); return false;">
+          <div class="form-group">
+            <input type="text" class="form-control form-control-lg" placeholder="Your Name" required>
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-control form-control-lg" placeholder="Email Address" required>
+          </div>
+          <div class="form-group">
+            <textarea class="form-control form-control-lg" rows="4" placeholder="Your Message" required></textarea>
+          </div>
+          <button type="submit" class="btn-custom w-100">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>© 2026 Abujar Firoj Pathan. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 800, once: true, offset: 100 });
+  function sendMessage() {
+    alert('Thank you for your message! (This is a demo – add your own backend or use Formspree.)');
+  }
+</script>
+</body>
+</html>
