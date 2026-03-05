@@ -386,11 +386,76 @@
       backdrop-filter: blur(14px);
     }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px){
-      .hero-content h1{ font-size: 2.55rem; }
-      .section-title{ font-size: 2.05rem; }
+    /* ===== RESPONSIVE FIXES (MOBILE + TABLET) ===== */
+    @media (max-width: 576px){
+      .container{ padding-left: 16px; padding-right: 16px; }
     }
+
+    @media (max-width: 991px){
+      .navbar .navbar-collapse{
+        background: rgba(255,255,255,0.92);
+        border: 1px solid var(--stroke);
+        border-radius: 18px;
+        padding: 12px 12px;
+        margin-top: 10px;
+        box-shadow: var(--shadow2);
+      }
+      .navbar .nav-link{
+        margin: 6px 0;
+        padding: 10px 12px !important;
+        border-radius: 14px;
+      }
+      .navbar .nav-link:after{ display:none; }
+
+      .hero{
+        min-height: auto;
+        padding: 110px 0 70px;
+        text-align: center;
+      }
+      .hero-content{ text-align: center; }
+      .hero-lead{ margin-left: auto; margin-right: auto; }
+      .social-links-hero{
+        display:flex;
+        justify-content:center;
+        flex-wrap:wrap;
+        gap:10px;
+      }
+      .social-links-hero a{ margin-right: 0; }
+      .hero-img-wrapper{ max-width: 320px; }
+    }
+
+    @media (max-width: 576px){
+      .btn-custom{
+        width: 100%;
+        text-align: center;
+        margin: 10px 0 !important;
+      }
+      .btn-custom.mr-3{ margin-right: 0 !important; }
+    }
+
+    @media (max-width: 768px){
+      .hero-content h1{ font-size: 2.35rem; line-height: 1.15; }
+      .hero-subtitle{ font-size: 1.02rem; }
+      .section-title{ font-size: 1.9rem; margin-bottom: 2.2rem; }
+
+      .exp-card{ padding: 1.25rem; }
+      .project-body{ padding: 1.25rem; }
+      .edu-card{ padding: 1.1rem; }
+    }
+
+    @media (max-width: 576px){
+      .skill-tag{
+        padding: .6rem 1rem;
+        margin: .35rem;
+        font-size: .95rem;
+      }
+    }
+
+    @media (max-width: 991px){
+      .contact-section .col-lg-6 + .col-lg-6{ margin-top: 24px; }
+    }
+
+    img{ max-width: 100%; height: auto; }
   </style>
 </head>
 
@@ -446,7 +511,6 @@
       </div>
       <div class="col-lg-6 text-center mt-5 mt-lg-0" data-aos="fade-left">
         <div class="hero-img-wrapper">
-          <!-- Replace with your actual photo -->
           <img src="abujarp.jpeg" alt="Abujar Pathan" class="hero-img">
         </div>
       </div>
