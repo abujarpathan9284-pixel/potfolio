@@ -1,965 +1,1142 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Abujar Pathan | Web Developer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Abujar Pathan | Web Developer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Bootstrap 4.6 -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <!-- Bootstrap 4.6 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome 5 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Font Awesome 5 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-  <!-- AOS -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    :root{
-      --bg: #f5f5f7;
-      --card: rgba(255,255,255,0.78);
-      --card2: rgba(255,255,255,0.9);
-      --stroke: rgba(15, 23, 42, 0.08);
-      --text: #0f172a;
-      --muted: rgba(15,23,42,0.68);
-      --muted2: rgba(15,23,42,0.55);
-      --blue: #0071e3;
-      --blue2:#3b82f6;
-      --shadow: 0 18px 45px rgba(15,23,42,0.10);
-      --shadow2: 0 10px 28px rgba(15,23,42,0.08);
-      --radius: 22px;
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    body{
-      font-family: 'Inter', sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(900px 420px at 10% -10%, rgba(0,113,227,.12), transparent 60%),
-        radial-gradient(820px 420px at 90% 0%, rgba(59,130,246,.10), transparent 55%),
-        linear-gradient(180deg, #ffffff 0%, var(--bg) 40%, #ffffff 100%);
-      line-height: 1.65;
-      overflow-x: hidden;
-    }
+    :root {
+    --bg: #ffffff;
+    --card: rgba(255,255,255,0.95);
+    --card2: rgba(255,255,255,1);
+    --stroke: rgba(212,175,55,0.20);
 
-    /* ===== BLOB BACKGROUND (from Pratik) ===== */
-    .blob {
-      position: fixed;
-      width: 400px;
-      height: 400px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(0,113,227, 0.15), rgba(59,130,246, 0.06));
-      filter: blur(70px);
-      z-index: -1;
-      pointer-events: none;
-    }
-    .b1 { top: -100px; left: -100px; }
-    .b2 { bottom: -100px; right: -100px; background: linear-gradient(135deg, rgba(139, 92, 246, 0.12), rgba(168, 85, 247, 0.04)); }
+    --text: #111111;
+    --muted: #555555;
+    --muted2: #777777;
 
-    h1,h2,h3,h4{ font-weight: 800; letter-spacing: -0.03em; }
-    .section-title{
-      font-size: 2.45rem;
-      margin-bottom: 2.8rem;
-      position: relative;
-      display: inline-block;
-      color: var(--text);
-    }
-    .section-title:after{
-      content:"";
-      position:absolute;
-      left:0;
-      bottom:-12px;
-      width:78px;
-      height:4px;
-      border-radius:999px;
-      background: linear-gradient(90deg, var(--blue), var(--blue2));
-    }
+    --blue: #D4AF37;
+    --blue2: #B8860B;
 
-    /* ===== NAVBAR ===== */
-    .navbar{
-      background: rgba(255,255,255,0.72);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--stroke);
-      padding: 0.9rem 0;
-      transition: all .25s ease;
-    }
-    .navbar .navbar-brand{
-      font-weight: 900;
-      color: var(--text);
-      font-size: 1.35rem;
-      letter-spacing: -0.4px;
-    }
-    .navbar .nav-link{
-      color: rgba(15,23,42,0.74) !important;
-      font-weight: 700;
-      margin: 0 0.55rem;
-      transition: all .2s ease;
-      position: relative;
-    }
-    .navbar .nav-link:hover{
-      color: var(--text) !important;
-      transform: translateY(-1px);
-    }
-    .navbar .nav-link:after{
-      content:"";
-      position:absolute;
-      left:10px; right:10px;
-      bottom:2px;
-      height:2px;
-      border-radius:999px;
-      background: var(--blue);
-      transform: scaleX(0);
-      transform-origin:left;
-      transition: transform .2s ease;
-      opacity:.9;
-    }
-    .navbar .nav-link:hover:after{ transform: scaleX(1); }
-    .navbar-toggler{
-      border:none;
-      background:transparent;
-      color: var(--text);
-      font-size: 1.8rem;
-      outline: none !important;
-    }
+    --shadow: 0 18px 45px rgba(212,175,55,0.15);
+    --shadow2: 0 10px 28px rgba(212,175,55,0.10);
 
-    /* ===== HERO ===== */
-    .hero{
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 125px 0 85px;
-      position: relative;
-    }
-    .hero-content h1{
-      font-size: 3.35rem;
-      line-height: 1.12;
-      margin-bottom: .35rem;
-    }
-    .hero-highlight{
-      color: var(--blue);
-      border-bottom: 3px solid rgba(0,113,227,0.25);
-    }
-    .hero-subtitle{
-      font-size: 1.18rem;
-      color: var(--muted);
-      font-weight: 600;
-      margin: 1rem 0 1.2rem;
-    }
-    .hero-lead{
-      color: var(--muted2);
-      max-width: 560px;
-      font-size: 1.05rem;
-    }
+    --radius: 22px;
+}
 
-    /* ===== HERO STATS (from Pratik) ===== */
-    .hero-stats {
-      display: flex;
-      gap: 2.5rem;
-      margin-top: 2rem;
-    }
-    .stat-card {}
-    .stat-no {
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--text);
-    }
-    .stat-txt {
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
+body{
+    font-family:'Inter',sans-serif;
+    color:var(--text);
+    background:
+    radial-gradient(circle at top left,
+    rgba(212,175,55,.12),
+    transparent 35%),
+    radial-gradient(circle at bottom right,
+    rgba(212,175,55,.08),
+    transparent 35%),
+    #ffffff;
+    line-height:1.65;
+    overflow-x:hidden;
+}
 
-    /* Buttons */
-    .btn-custom{
-      background: var(--blue);
-      color: white;
-      padding: 12px 34px;
-      border-radius: 999px;
-      font-weight: 800;
-      border: none;
-      transition: all .2s ease;
-      box-shadow: 0 14px 32px rgba(0,113,227,0.22);
-      display: inline-block;
-    }
-    .btn-custom:hover{
-      background: #056ad6;
-      transform: translateY(-2px);
-      box-shadow: 0 18px 38px rgba(0,113,227,0.28);
-      color: white;
-      text-decoration: none;
-    }
+        /* ===== BLOB BACKGROUND (from Pratik) ===== */
+        .blob {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(0, 113, 227, 0.15), rgba(59, 130, 246, 0.06));
+            filter: blur(70px);
+            z-index: -1;
+            pointer-events: none;
+        }
 
-    /* ===== WHATSAPP BUTTON (from Pratik) ===== */
-    .btn-whatsapp {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: #25D366;
-      color: white;
-      padding: 12px 34px;
-      border-radius: 999px;
-      font-weight: 800;
-      text-decoration: none;
-      transition: all .2s ease;
-      box-shadow: 0 14px 32px rgba(37,211,102,0.22);
-    }
-    .btn-whatsapp:hover {
-      background: #1da851;
-      transform: translateY(-2px);
-      color: white;
-      text-decoration: none;
-    }
+        .b1 {
+            top: -100px;
+            left: -100px;
+        }
 
-    /* Social icons */
-    .social-links-hero a{
-      color: rgba(15,23,42,0.55);
-      font-size: 1.25rem;
-      margin-right: .9rem;
-      width: 46px;
-      height: 46px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.8);
-      border: 1px solid var(--stroke);
-      transition: all .2s ease;
-      box-shadow: 0 10px 22px rgba(15,23,42,0.06);
-    }
-    .social-links-hero a:hover{
-      color: var(--text);
-      transform: translateY(-2px);
-      box-shadow: 0 14px 28px rgba(15,23,42,0.10);
-    }
+        .b2 {
+            bottom: -100px;
+            right: -100px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.12), rgba(168, 85, 247, 0.04));
+        }
 
-    /* Hero image */
-    .hero-img-wrapper{
-      position: relative;
-      max-width: 390px;
-      margin: 0 auto;
-    }
-    .hero-img{
-      width: 100%;
-      border-radius: 28px;
-      border: 1px solid var(--stroke);
-      box-shadow: var(--shadow);
-      transition: transform .35s ease;
-      background: #fff;
-    }
-    .hero-img:hover{ transform: translateY(-6px); }
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
 
-    /* ===== SECTIONS ===== */
-    .about-section, .exp-section, .contact-section { padding: 100px 0; }
-    .skills-section, .projects-section { padding: 100px 0; }
+        .section-title {
+            font-size: 2.45rem;
+            margin-bottom: 2.8rem;
+            position: relative;
+            display: inline-block;
+            color: var(--text);
+        }
 
-    .soft-card{
-      background: var(--card);
-      border: 1px solid var(--stroke);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow2);
-      backdrop-filter: blur(12px);
-    }
+   .section-title:after{
+    background:linear-gradient(90deg,#D4AF37,#B8860B);
+}
 
-    /* ===== ABOUT ===== */
-    .about-text{ font-size: 1.07rem; color: var(--muted); }
-    .achievement-badge{
-      background: rgba(0,113,227,0.08);
-      border: 1px solid rgba(0,113,227,0.14);
-      padding: 1rem 1.15rem;
-      border-radius: 18px;
-      font-weight: 700;
-      color: rgba(15,23,42,0.82);
-    }
-    .edu-card{
-      background: var(--card2);
-      border: 1px solid var(--stroke);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow2);
-      padding: 1.25rem;
-    }
-    .edu-card h5{ font-weight: 900; color: var(--text); }
+        /* ===== NAVBAR ===== */
+        .navbar {
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--stroke);
+            padding: 0.9rem 0;
+            transition: all .25s ease;
+        }
 
-    /* ===== SKILLS ===== */
-    .skill-tag{
-      background: rgba(255,255,255,0.85);
-      border: 1px solid var(--stroke);
-      padding: .75rem 1.35rem;
-      border-radius: 999px;
-      font-weight: 700;
-      color: rgba(15,23,42,0.78);
-      display: inline-block;
-      margin: .55rem;
-      transition: all .18s ease;
-      box-shadow: 0 10px 22px rgba(15,23,42,0.05);
-    }
-    .skill-tag:hover{
-      background: rgba(0,113,227,0.10);
-      border-color: rgba(0,113,227,0.22);
-      color: var(--text);
-      transform: translateY(-2px);
-      box-shadow: 0 14px 28px rgba(15,23,42,0.08);
-    }
+        .navbar .navbar-brand {
+            font-weight: 900;
+            color: var(--text);
+            font-size: 1.35rem;
+            letter-spacing: -0.4px;
+        }
 
-    /* ===== EXPERIENCE ===== */
-    .exp-card{
-      background: rgba(255,255,255,0.85);
-      border: 1px solid var(--stroke);
-      border-radius: var(--radius);
-      padding: 2rem;
-      box-shadow: var(--shadow2);
-    }
-    .exp-card h3{ color: var(--text); }
-    .exp-card .company{ color: var(--blue); font-weight: 800; }
-    .badge-primary{
-      background: rgba(0,113,227,0.10) !important;
-      color: var(--blue) !important;
-      border: 1px solid rgba(0,113,227,0.20) !important;
-      font-weight: 800;
-    }
+        .navbar-brand span{
+    color:#D4AF37;
+}
+        .navbar .nav-link {
+            color: rgba(15, 23, 42, 0.74) !important;
+            font-weight: 700;
+            margin: 0 0.55rem;
+            transition: all .2s ease;
+            position: relative;
+        }
 
-    /* ===== PROJECTS ===== */
-    .project-card{
-      background: rgba(255,255,255,0.86);
-      border: 1px solid var(--stroke);
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow2);
-      transition: all .2s ease;
-      height: 100%;
-    }
-    .project-card:hover{
-      transform: translateY(-10px);
-      box-shadow: 0 24px 55px rgba(15,23,42,0.16);
-      border-color: rgba(0,113,227,0.16);
-    }
-    .project-body{ padding: 1.85rem; color: var(--muted); }
-    .project-title{
-      font-weight: 900;
-      font-size: 1.42rem;
-      margin-bottom: .7rem;
-      color: var(--text);
-    }
-    .tech-badge{
-      background: rgba(15,23,42,0.06);
-      color: rgba(15,23,42,0.78);
-      border: 1px solid rgba(15,23,42,0.08);
-      padding: .32rem .9rem;
-      border-radius: 999px;
-      font-size: .8rem;
-      font-weight: 700;
-    }
+        .navbar .nav-link:hover {
+            color: var(--text) !important;
+            transform: translateY(-1px);
+        }
 
-    /* ===== RESUME BOX (from Pratik) ===== */
-    .resume-box {
-      background: rgba(0,113,227,0.06);
-      border: 1px solid rgba(0,113,227,0.14);
-      border-radius: 18px;
-      padding: 1.25rem 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 1.5rem;
-    }
-    .resume-box .btn-sm-custom {
-      background: var(--blue);
-      color: white;
-      padding: 8px 20px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 0.9rem;
-      border: none;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: all .2s ease;
-      text-decoration: none;
-    }
-    .resume-box .btn-sm-custom:hover {
-      background: #056ad6;
-      transform: translateY(-1px);
-      color: white;
-    }
+        .navbar .nav-link:after {
+            content: "";
+            position: absolute;
+            left: 10px;
+            right: 10px;
+            bottom: 2px;
+            height: 2px;
+            border-radius: 999px;
+            background: var(--blue);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .2s ease;
+            opacity: .9;
+        }
 
-    /* ===== CONTACT ===== */
-    .contact-info-item{
-      display:flex;
-      align-items:center;
-      margin-bottom: 1.25rem;
-    }
-    .contact-icon{
-      width: 52px; height: 52px;
-      background: rgba(255,255,255,0.85);
-      border: 1px solid var(--stroke);
-      border-radius: 50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color: var(--blue);
-      font-size: 1.25rem;
-      margin-right: 1rem;
-      box-shadow: 0 10px 22px rgba(15,23,42,0.05);
-    }
-    .contact-detail a{
-      color: rgba(15,23,42,0.80);
-      text-decoration: none;
-      font-weight: 700;
-    }
-    .contact-detail a:hover{ color: var(--text); text-decoration: underline; }
+        .navbar .nav-link:hover:after {
+            transform: scaleX(1);
+        }
 
-    .social-contact a{
-      display:inline-block;
-      width: 46px; height: 46px;
-      background: rgba(255,255,255,0.85);
-      border: 1px solid var(--stroke);
-      border-radius: 50%;
-      text-align: center;
-      line-height: 46px;
-      color: rgba(15,23,42,0.70);
-      margin-right: .7rem;
-      transition: all .18s ease;
-      box-shadow: 0 10px 22px rgba(15,23,42,0.05);
-    }
-    .social-contact a:hover{
-      transform: translateY(-2px);
-      color: var(--text);
-      box-shadow: 0 14px 28px rgba(15,23,42,0.10);
-    }
+        .navbar-toggler {
+            border: none;
+            background: transparent;
+            color: var(--text);
+            font-size: 1.8rem;
+            outline: none !important;
+        }
 
-    /* ===== EMAIL FORM STATUS (from Pratik) ===== */
-    .form-status {
-      margin-top: 1rem;
-      padding: 0.8rem 1rem;
-      border-radius: 14px;
-      font-weight: 600;
-      display: none;
-    }
-    .form-status.success { background: #d1fae5; color: #065f46; display: block; }
-    .form-status.error   { background: #fee2e2; color: #991b1b; display: block; }
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 125px 0 85px;
+            position: relative;
+        }
 
-    .form-control{
-      background: rgba(255,255,255,0.9);
-      border: 1px solid var(--stroke);
-      color: rgba(15,23,42,0.85);
-      border-radius: 18px;
-      box-shadow: none !important;
-    }
-    .form-control::placeholder{ color: rgba(15,23,42,0.45); }
-    .form-control:focus{
-      border-color: rgba(0,113,227,0.35);
-      box-shadow: 0 0 0 .2rem rgba(0,113,227,0.12) !important;
-    }
+        .hero-content h1 {
+            font-size: 3.35rem;
+            line-height: 1.12;
+            margin-bottom: .35rem;
+        }
 
-    /* ===== FOOTER ===== */
-    footer{
-      background: rgba(255,255,255,0.72);
-      border-top: 1px solid var(--stroke);
-      color: rgba(15,23,42,0.60);
-      text-align: center;
-      padding: 2rem 0;
-      backdrop-filter: blur(14px);
-    }
+   .hero-highlight{
+    color:#D4AF37;
+    border-bottom:3px solid rgba(212,175,55,.4);
+}
 
-    /* ===== BACK TO TOP (from Pratik) ===== */
-    .to-top {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: var(--blue);
-      color: white;
-      border: none;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      font-size: 1.2rem;
-      cursor: pointer;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 8px 20px rgba(0,113,227,0.35);
-      z-index: 999;
-      transition: all .2s ease;
-    }
-    .to-top:hover { background: #056ad6; transform: translateY(-2px); }
+        .hero-subtitle {
+            font-size: 1.18rem;
+            color: var(--muted);
+            font-weight: 600;
+            margin: 1rem 0 1.2rem;
+        }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 576px){ .container{ padding-left: 16px; padding-right: 16px; } }
+        .hero-lead {
+            color: var(--muted2);
+            max-width: 560px;
+            font-size: 1.05rem;
+        }
 
-    @media (max-width: 991px){
-      .navbar .navbar-collapse{
-        background: rgba(255,255,255,0.92);
-        border: 1px solid var(--stroke);
-        border-radius: 18px;
-        padding: 12px 12px;
-        margin-top: 10px;
-        box-shadow: var(--shadow2);
-      }
-      .navbar .nav-link{ margin: 6px 0; padding: 10px 12px !important; border-radius: 14px; }
-      .navbar .nav-link:after{ display:none; }
-      .hero{ min-height: auto; padding: 110px 0 70px; text-align: center; }
-      .hero-content{ text-align: center; }
-      .hero-lead{ margin-left: auto; margin-right: auto; }
-      .social-links-hero{ display:flex; justify-content:center; flex-wrap:wrap; gap:10px; }
-      .social-links-hero a{ margin-right: 0; }
-      .hero-img-wrapper{ max-width: 320px; }
-      .hero-stats{ justify-content: center; }
-    }
+        /* ===== HERO STATS (from Pratik) ===== */
+        .hero-stats {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
 
-    @media (max-width: 576px){
-      .btn-custom{ width: 100%; text-align: center; margin: 10px 0 !important; }
-      .btn-whatsapp{ width: 100%; justify-content: center; margin: 10px 0 !important; }
-    }
+        /* .stat-card {} */
 
-    @media (max-width: 768px){
-      .hero-content h1{ font-size: 2.35rem; line-height: 1.15; }
-      .hero-subtitle{ font-size: 1.02rem; }
-      .section-title{ font-size: 1.9rem; margin-bottom: 2.2rem; }
-      .exp-card{ padding: 1.25rem; }
-      .project-body{ padding: 1.25rem; }
-      .edu-card{ padding: 1.1rem; }
-    }
+        .stat-no {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text);
+        }
 
-    @media (max-width: 576px){
-      .skill-tag{ padding: .6rem 1rem; margin: .35rem; font-size: .95rem; }
-    }
+        .stat-txt {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
 
-    @media (max-width: 991px){
-      .contact-section .col-lg-6 + .col-lg-6{ margin-top: 24px; }
-    }
+        /* Buttons */
+       .btn-custom {
+    background: linear-gradient(135deg,#D4AF37,#B8860B);
+    color:white;
+    padding:12px 34px;
+    border-radius:999px;
+    font-weight:800;
+    border:none;
+    box-shadow:0 14px 32px rgba(212,175,55,.25);
+}
 
-    img{ max-width: 100%; height: auto; }
-  </style>
+.btn-custom:hover{
+    background:linear-gradient(135deg,#B8860B,#D4AF37);
+    color:white;
+}
+
+
+        /* ===== WHATSAPP BUTTON (from Pratik) ===== */
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #25D366;
+            color: white;
+            padding: 12px 34px;
+            border-radius: 999px;
+            font-weight: 800;
+            text-decoration: none;
+            transition: all .2s ease;
+            box-shadow: 0 14px 32px rgba(37, 211, 102, 0.22);
+        }
+
+        .btn-whatsapp:hover {
+            background: #1da851;
+            transform: translateY(-2px);
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Social icons */
+        .social-links-hero a {
+            color: rgba(15, 23, 42, 0.55);
+            font-size: 1.25rem;
+            margin-right: .9rem;
+            width: 46px;
+            height: 46px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid var(--stroke);
+            transition: all .2s ease;
+            box-shadow: 0 10px 22px rgba(15, 23, 42, 0.06);
+        }
+
+        .social-links-hero a:hover {
+            color: var(--text);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px rgba(15, 23, 42, 0.10);
+        }
+
+        /* Hero image */
+        .hero-img-wrapper {
+            position: relative;
+            max-width: 390px;
+            margin: 0 auto;
+        }
+
+        .hero-img {
+            width: 100%;
+            border-radius: 28px;
+            border: 1px solid var(--stroke);
+            box-shadow: var(--shadow);
+            transition: transform .35s ease;
+            background: #fff;
+        }
+
+        .hero-img:hover {
+            transform: translateY(-6px);
+        }
+
+        /* ===== SECTIONS ===== */
+        .about-section,
+        .exp-section,
+        .contact-section {
+            padding: 100px 0;
+        }
+
+        .skills-section,
+        .projects-section {
+            padding: 100px 0;
+        }
+
+        .soft-card {
+            background: var(--card);
+            border: 1px solid var(--stroke);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow2);
+            backdrop-filter: blur(12px);
+        }
+
+        /* ===== ABOUT ===== */
+        .about-text {
+            font-size: 1.07rem;
+            color: var(--muted);
+        }
+
+        .achievement-badge {
+            background: rgba(0, 113, 227, 0.08);
+            border: 1px solid rgba(0, 113, 227, 0.14);
+            padding: 1rem 1.15rem;
+            border-radius: 18px;
+            font-weight: 700;
+            color: rgba(15, 23, 42, 0.82);
+        }
+
+        .edu-card {
+            background: var(--card2);
+            border: 1px solid var(--stroke);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow2);
+            padding: 1.25rem;
+        }
+
+        .edu-card h5 {
+            font-weight: 900;
+            color: var(--text);
+        }
+
+        /* ===== SKILLS ===== */
+        .skill-tag {
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid var(--stroke);
+            padding: .75rem 1.35rem;
+            border-radius: 999px;
+            font-weight: 700;
+            color: rgba(15, 23, 42, 0.78);
+            display: inline-block;
+            margin: .55rem;
+            transition: all .18s ease;
+            box-shadow: 0 10px 22px rgba(15, 23, 42, 0.05);
+        }
+
+        .skill-tag:hover {
+            background: rgba(0, 113, 227, 0.10);
+            border-color: rgba(0, 113, 227, 0.22);
+            color: var(--text);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+        }
+
+        /* ===== EXPERIENCE ===== */
+        .exp-card {
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid var(--stroke);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow2);
+        }
+
+        .exp-card h3 {
+            color: var(--text);
+        }
+
+        .exp-card .company {
+            color: var(--blue);
+            font-weight: 800;
+        }
+
+        .badge-primary {
+            background: rgba(0, 113, 227, 0.10) !important;
+            color: var(--blue) !important;
+            border: 1px solid rgba(0, 113, 227, 0.20) !important;
+            font-weight: 800;
+        }
+
+        /* ===== PROJECTS ===== */
+        .project-card {
+            background: rgba(255, 255, 255, 0.86);
+            border: 1px solid var(--stroke);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow2);
+            transition: all .2s ease;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 24px 55px rgba(15, 23, 42, 0.16);
+            border-color: rgba(0, 113, 227, 0.16);
+        }
+
+        .project-body {
+            padding: 1.85rem;
+            color: var(--muted);
+        }
+
+        .project-title {
+            font-weight: 900;
+            font-size: 1.42rem;
+            margin-bottom: .7rem;
+            color: var(--text);
+        }
+
+        .tech-badge {
+            background: rgba(15, 23, 42, 0.06);
+            color: rgba(15, 23, 42, 0.78);
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            padding: .32rem .9rem;
+            border-radius: 999px;
+            font-size: .8rem;
+            font-weight: 700;
+        }
+
+        /* ===== RESUME BOX (from Pratik) ===== */
+        .resume-box {
+            background: rgba(0, 113, 227, 0.06);
+            border: 1px solid rgba(0, 113, 227, 0.14);
+            border-radius: 18px;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+
+        .resume-box .btn-sm-custom {
+            background: var(--blue);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all .2s ease;
+            text-decoration: none;
+        }
+
+        .resume-box .btn-sm-custom:hover {
+            background: #056ad6;
+            transform: translateY(-1px);
+            color: white;
+        }
+
+        /* ===== CONTACT ===== */
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .contact-icon {
+            width: 52px;
+            height: 52px;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid var(--stroke);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--blue);
+            font-size: 1.25rem;
+            margin-right: 1rem;
+            box-shadow: 0 10px 22px rgba(15, 23, 42, 0.05);
+        }
+
+        .contact-detail a {
+            color: rgba(15, 23, 42, 0.80);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .contact-detail a:hover {
+            color: var(--text);
+            text-decoration: underline;
+        }
+
+        .social-contact a {
+            display: inline-block;
+            width: 46px;
+            height: 46px;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid var(--stroke);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 46px;
+            color: rgba(15, 23, 42, 0.70);
+            margin-right: .7rem;
+            transition: all .18s ease;
+            box-shadow: 0 10px 22px rgba(15, 23, 42, 0.05);
+        }
+
+        .social-contact a:hover {
+            transform: translateY(-2px);
+            color: var(--text);
+            box-shadow: 0 14px 28px rgba(15, 23, 42, 0.10);
+        }
+
+        /* ===== EMAIL FORM STATUS (from Pratik) ===== */
+        .form-status {
+            margin-top: 1rem;
+            padding: 0.8rem 1rem;
+            border-radius: 14px;
+            font-weight: 600;
+            display: none;
+        }
+
+        .form-status.success {
+            background: #d1fae5;
+            color: #065f46;
+            display: block;
+        }
+
+        .form-status.error {
+            background: #fee2e2;
+            color: #991b1b;
+            display: block;
+        }
+
+        .form-control {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid var(--stroke);
+            color: rgba(15, 23, 42, 0.85);
+            border-radius: 18px;
+            box-shadow: none !important;
+        }
+
+        .form-control::placeholder {
+            color: rgba(15, 23, 42, 0.45);
+        }
+
+        .form-control:focus {
+            border-color: rgba(0, 113, 227, 0.35);
+            box-shadow: 0 0 0 .2rem rgba(0, 113, 227, 0.12) !important;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: rgba(255, 255, 255, 0.72);
+            border-top: 1px solid var(--stroke);
+            color: rgba(15, 23, 42, 0.60);
+            text-align: center;
+            padding: 2rem 0;
+            backdrop-filter: blur(14px);
+        }
+
+        /* ===== BACK TO TOP (from Pratik) ===== */
+        .to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--blue);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(0, 113, 227, 0.35);
+            z-index: 999;
+            transition: all .2s ease;
+        }
+
+        .to-top:hover {
+            background: #056ad6;
+            transform: translateY(-2px);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 576px) {
+            .container {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .navbar .navbar-collapse {
+                background: rgba(255, 255, 255, 0.92);
+                border: 1px solid var(--stroke);
+                border-radius: 18px;
+                padding: 12px 12px;
+                margin-top: 10px;
+                box-shadow: var(--shadow2);
+            }
+
+            .navbar .nav-link {
+                margin: 6px 0;
+                padding: 10px 12px !important;
+                border-radius: 14px;
+            }
+
+            .navbar .nav-link:after {
+                display: none;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 110px 0 70px;
+                text-align: center;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero-lead {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .social-links-hero {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .social-links-hero a {
+                margin-right: 0;
+            }
+
+            .hero-img-wrapper {
+                max-width: 320px;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .btn-custom {
+                width: 100%;
+                text-align: center;
+                margin: 10px 0 !important;
+            }
+
+            .btn-whatsapp {
+                width: 100%;
+                justify-content: center;
+                margin: 10px 0 !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.35rem;
+                line-height: 1.15;
+            }
+
+            .hero-subtitle {
+                font-size: 1.02rem;
+            }
+
+            .section-title {
+                font-size: 1.9rem;
+                margin-bottom: 2.2rem;
+            }
+
+            .exp-card {
+                padding: 1.25rem;
+            }
+
+            .project-body {
+                padding: 1.25rem;
+            }
+
+            .edu-card {
+                padding: 1.1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .skill-tag {
+                padding: .6rem 1rem;
+                margin: .35rem;
+                font-size: .95rem;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .contact-section .col-lg-6+.col-lg-6 {
+                margin-top: 24px;
+            }
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- BLOB BACKGROUNDS (from Pratik) -->
-<div class="blob b1"></div>
-<div class="blob b2"></div>
+    <!-- BLOB BACKGROUNDS (from Pratik) -->
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
 
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg fixed-top">
-  <div class="container">
-    <a class="navbar-brand" href="#">Abujar Pathan</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-      <i class="fas fa-bars"></i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-        <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        <!-- Resume Download in Navbar -->
-        <li class="nav-item">
-          <a class="nav-link" href="resume.pdf" id="navResumeBtn">
-            Resume <i class="fas fa-download ml-1"></i>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<!-- HERO SECTION -->
-<section class="hero" id="home">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-lg-6 hero-content" data-aos="fade-up">
-        <h1>Abujar <span class="hero-highlight">Pathan</span></h1>
-        <div class="hero-subtitle">Web Developer • Full-Stack Developer</div>
-        <p class="mb-4 hero-lead">Detail-oriented developer with internship experience in full-stack development. Skilled in Node.js, Express.js, SQL, and modern front-end technologies.</p>
-
-        <div class="mb-4 social-links-hero">
-          <a href="https://www.linkedin.com/in/abujar-pathan-2a0a372b8" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://github.com/abujarpathan9284-pixel" target="_blank"><i class="fab fa-github"></i></a>
-          <a href="mailto:abujarpathan9284@gmail.com"><i class="fas fa-envelope"></i></a>
-        </div>
-
-        <div class="d-flex flex-wrap" style="gap:12px; margin-bottom: 1rem;">
-          <!-- Resume Download Hero Button -->
-          <a href="resume.pdf" id="heroResumeBtn" class="btn-custom">
-            <i class="fas fa-download mr-2"></i>Download Resume
-          </a>
-          <a href="#contact" class="btn-custom" style="background: #1e293b; box-shadow: 0 14px 32px rgba(30,41,59,0.2);">Let's talk <i class="fas fa-arrow-right ml-2"></i></a>
-          <!-- WhatsApp Button (from Pratik) -->
-          <a href="https://wa.me/919021615011?text=Hello%20Abujar" target="_blank" class="btn-whatsapp">
-            <i class="fab fa-whatsapp"></i> WhatsApp
-          </a>
-        </div>
-
-        <!-- HERO STATS (from Pratik) -->
-        <div class="hero-stats">
-          <div class="stat-card"><div class="stat-no">4+</div><div class="stat-txt">Projects</div></div>
-          <div class="stat-card"><div class="stat-no">10+</div><div class="stat-txt">Skills</div></div>
-          <div class="stat-card"><div class="stat-no">∞</div><div class="stat-txt">Learning</div></div>
-        </div>
-      </div>
-
-      <div class="col-lg-6 text-center mt-5 mt-lg-0" data-aos="fade-left">
-        <div class="hero-img-wrapper">
-          <img src="abujarp.jpg" alt="Abujar Pathan" class="hero-img">
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT SECTION -->
-<section class="about-section" id="about">
-  <div class="container">
-    <h2 class="section-title" data-aos="fade-right">About Me</h2>
-    <div class="row">
-      <div class="col-lg-8" data-aos="fade-up">
-        <p class="about-text">I am a motivated web developer currently pursuing a BBA in Computer Application at K.G. Munoth Arts & Commerce College (2023–present). Fluent in English, Hindi, and Marathi, I enjoy building responsive and scalable web applications that solve real problems.</p>
-        <p class="about-text mt-3">During my internship at A2Z IT Hub, I've honed my skills in both front-end and back-end development, delivering client websites and full-stack features.</p>
-        <div class="achievement-badge mt-4">
-          <i class="fas fa-trophy text-warning mr-2"></i> <strong>Key Achievement:</strong> Successfully developed and deployed two full-stack web applications, improving functionality and user experience.
-        </div>
-      </div>
-      <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-left">
-        <div class="edu-card">
-          <h5 class="mb-3"><i class="fas fa-graduation-cap" style="color:var(--blue)"></i> Education</h5>
-          <p><strong>BBA (Computer Application)</strong><br>K.G. Munoth Arts & Commerce College<br>07/2023 – Present</p>
-          <h5 class="mb-3 mt-4"><i class="fas fa-language" style="color:var(--blue)"></i> Languages</h5>
-          <p>English (Fluent) · Hindi (Native) · Marathi (Fluent)</p>
-
-          <!-- RESUME DOWNLOAD BOX (from Pratik) -->
-          <div class="resume-box">
-            <div>
-              <strong>Resume</strong>
-              <div style="color:var(--muted2); font-size:0.85rem;">Download PDF</div>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+    <img src="logo.png" alt="AP Logo" style="height:40px; width:auto; margin-right:10px;">
+    <span>Abujar Pathan</span>
+</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <!-- Resume Download in Navbar -->
+                    <li class="nav-item">
+                        <a href="#" id="navResumeBtn" class="nav-link">
+                            Resume <i class="fas fa-download ml-1"></i>
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <a href="#" id="eduResumeBtn" class="btn-sm-custom">
-              <i class="fas fa-download"></i> Download
-            </a>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </nav>
 
-<!-- SKILLS SECTION -->
-<section class="skills-section" id="skills">
-  <div class="container">
-    <h2 class="section-title" data-aos="fade-right">Technical Skills</h2>
-    <div class="text-center" data-aos="fade-up">
-      <span class="skill-tag">HTML5</span>
-      <span class="skill-tag">CSS3</span>
-      <span class="skill-tag">JavaScript (ES6+)</span>
-      <span class="skill-tag">Bootstrap</span>
-      <span class="skill-tag">Node.js</span>
-      <span class="skill-tag">Express.js</span>
-      <span class="skill-tag">SQL / MySQL</span>
-      <span class="skill-tag">Git & GitHub</span>
-      <span class="skill-tag">Responsive Design</span>
-      <span class="skill-tag">REST APIs</span>
-      <span class="skill-tag">Postman</span>
-      <span class="skill-tag">VS Code</span>
-    </div>
-  </div>
-</section>
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content" data-aos="fade-up">
+                    <h1>Abujar <span class="hero-highlight">Pathan</span></h1>
+                    <div class="hero-subtitle">Web Developer • Full-Stack Developer</div>
+                    <p class="mb-4 hero-lead">Detail-oriented developer with internship experience in full-stack
+                        development. Skilled in Node.js, Express.js, SQL, and modern front-end technologies.</p>
 
-<!-- EXPERIENCE SECTION -->
-<section class="exp-section" id="experience">
-  <div class="container">
-    <h2 class="section-title" data-aos="fade-right">Internship</h2>
-    <div class="exp-card" data-aos="fade-up">
-      <div class="d-flex flex-wrap align-items-center justify-content-between mb-3">
-        <h3 class="mb-0">Full Stack Developer Intern</h3>
-        <span class="badge badge-primary px-3 py-2">Jan 2026 – Present</span>
-      </div>
-      <p class="company mb-3"><i class="fas fa-building mr-2"></i>A2Z IT Hub, Ahilyanagar</p>
-      <ul class="list-unstyled">
-        <li class="mb-2"><i class="fas fa-check-circle mr-2" style="color:var(--blue)"></i>Developed and maintained responsive client websites using HTML, CSS, JavaScript, and Bootstrap.</li>
-        <li class="mb-2"><i class="fas fa-check-circle mr-2" style="color:var(--blue)"></i>Built backend functionality with Node.js and Express.js.</li>
-        <li class="mb-2"><i class="fas fa-check-circle mr-2" style="color:var(--blue)"></i>Integrated MySQL databases and implemented authentication systems.</li>
-        <li class="mb-2"><i class="fas fa-check-circle mr-2" style="color:var(--blue)"></i>Worked with REST APIs and used Git/GitHub for version control.</li>
-      </ul>
-    </div>
-  </div>
-</section>
+                    <div class="mb-4 social-links-hero">
+                        <a href="https://www.linkedin.com/in/abujar-pathan-2a0a372b8" target="_blank"><i
+                                class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/abujarpathan9284-pixel" target="_blank"><i
+                                class="fab fa-github"></i></a>
+                        <a href="mailto:abujarpathan9284@gmail.com"><i class="fas fa-envelope"></i></a>
+                    </div>
 
-<!-- PROJECTS SECTION -->
-<section class="projects-section" id="projects">
-  <div class="container">
-    <h2 class="section-title" data-aos="fade-right">Projects</h2>
-    <div class="row">
-      <div class="col-md-6 mb-4" data-aos="zoom-in">
-        <div class="project-card">
-          <div class="project-body">
-            <h3 class="project-title">Ultraz E-Commerce Website</h3>
-            <p>Full-stack e-commerce platform with product management, shopping cart, and order processing.</p>
-            <div class="project-tech mt-3">
-              <span class="tech-badge">HTML</span>
-              <span class="tech-badge">CSS</span>
-              <span class="tech-badge">Bootstrap</span>
-              <span class="tech-badge">JavaScript</span>
-              <span class="tech-badge">Node.js</span>
-              <span class="tech-badge">Express.js</span>
-              <span class="tech-badge">MySQL</span>
+                    <div class="d-flex flex-wrap" style="gap:12px; margin-bottom: 1rem;">
+                        <!-- Resume Download Hero Button -->
+                       <a href="#" id="heroResumeBtn" class="btn-custom">
+  <i class="fas fa-download mr-2"></i>Download Resume
+</a>
+                        <a href="#contact" class="btn-custom"
+                            style="background: #1e293b; box-shadow: 0 14px 32px rgba(30,41,59,0.2);">Let's talk <i
+                                class="fas fa-arrow-right ml-2"></i></a>
+                        <!-- WhatsApp Button (from Pratik) -->
+                        <a href="https://wa.me/919021615011?text=Hello%20Abujar" target="_blank" class="btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
+
+                    <!-- HERO STATS (from Pratik) -->
+                    <div class="hero-stats">
+                        <div class="stat-card">
+                            <div class="stat-no">4+</div>
+                            <div class="stat-txt">Projects</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-no">10+</div>
+                            <div class="stat-txt">Skills</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-no">∞</div>
+                            <div class="stat-txt">Learning</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 text-center mt-5 mt-lg-0" data-aos="fade-left">
+                    <div class="hero-img-wrapper">
+                        <img src="abujarp.jpg" alt="Abujar Pathan" class="hero-img">
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+    </section>
 
-      <div class="col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="100">
-        <div class="project-card">
-          <div class="project-body">
-            <h3 class="project-title">DropXpress – Transport Management</h3>
-            <p>System to manage vehicles, drivers, trips, and profit/loss analytics for transport businesses.</p>
-            <div class="project-tech mt-3">
-              <span class="tech-badge">Node.js</span>
-              <span class="tech-badge">Express.js</span>
-              <span class="tech-badge">MySQL</span>
-              <span class="tech-badge">HTML</span>
-              <span class="tech-badge">CSS</span>
-              <span class="tech-badge">Bootstrap</span>
+    <!-- ABOUT SECTION -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-right">About Me</h2>
+            <div class="row">
+                <div class="col-lg-8" data-aos="fade-up">
+                    <p class="about-text">I am a motivated web developer with a BBA in Computer Application from K.G. Munoth Arts & Commerce College (2023–2026). Fluent in English, Hindi, and Marathi, I enjoy building responsive and scalable web applications that solve real-world problems.</p>
+                    <p class="about-text mt-3">I completed my internship at A2Z IT Hub, where I enhanced my front-end and back-end development skills by building client websites and developing full-stack web applications.</p>
+                    <div class="achievement-badge mt-4">
+                        <i class="fas fa-trophy text-warning mr-2"></i> <strong>Key Achievement:</strong> Successfully
+                        developed and deployed two full-stack web applications, improving functionality and user
+                        experience.
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-left">
+                    <div class="edu-card">
+                        <h5 class="mb-3"><i class="fas fa-graduation-cap" style="color:var(--blue)"></i> Education</h5>
+                        <p><strong>BBA (Computer Application)</strong><br>K.G. Munoth Arts & Commerce College<br>07/2023
+                            – Present</p>
+                        <h5 class="mb-3 mt-4"><i class="fas fa-language" style="color:var(--blue)"></i> Languages</h5>
+                        <p>English (Fluent) · Hindi (Native) · Marathi (Fluent)</p>
+
+                        <!-- RESUME DOWNLOAD BOX (from Pratik) -->
+                        <div class="resume-box">
+                            <div>
+                                <strong>Resume</strong>
+                                <div style="color:var(--muted2); font-size:0.85rem;">Download PDF</div>
+                            </div>
+                            <a href="#" id="eduResumeBtn" class="btn-sm-custom">
+                                <i class="fas fa-download"></i> Download
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+    </section>
 
-      <div class="col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="200">
-        <div class="project-card">
-          <div class="project-body">
-            <h3 class="project-title">Islamic Educational Portal</h3>
-            <p>Responsive portal providing Islamic learning resources, articles, and educational content.</p>
-            <div class="project-tech mt-3">
-              <span class="tech-badge">HTML</span>
-              <span class="tech-badge">CSS</span>
-              <span class="tech-badge">Bootstrap</span>
-              <span class="tech-badge">JavaScript</span>
+    <!-- SKILLS SECTION -->
+    <section class="skills-section" id="skills">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-right">Technical Skills</h2>
+            <div class="text-center" data-aos="fade-up">
+                <span class="skill-tag">HTML5</span>
+                <span class="skill-tag">CSS3</span>
+                <span class="skill-tag">JavaScript (ES6+)</span>
+                <span class="skill-tag">Bootstrap</span>
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">Express.js</span>
+                <span class="skill-tag">SQL / MySQL</span>
+                <span class="skill-tag">Git & GitHub</span>
+                <span class="skill-tag">Responsive Design</span>
+                <span class="skill-tag">REST APIs</span>
+                <span class="skill-tag">Postman</span>
+                <span class="skill-tag">VS Code</span>
             </div>
-          </div>
         </div>
-      </div>
+    </section>
 
-      <div class="col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="300">
-        <div class="project-card">
-          <div class="project-body">
-            <h3 class="project-title">Healthy Life Wellness Center</h3>
-            <p>Wellness website showcasing yoga, meditation, and fitness services with a modern design.</p>
-            <div class="project-tech mt-3">
-              <span class="tech-badge">HTML</span>
-              <span class="tech-badge">CSS</span>
-              <span class="tech-badge">Bootstrap</span>
-              <span class="tech-badge">JavaScript</span>
+    <!-- EXPERIENCE SECTION -->
+    <section class="exp-section" id="experience">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-right">Internship</h2>
+            <div class="exp-card" data-aos="fade-up">
+                <div class="d-flex flex-wrap align-items-center justify-content-between mb-3">
+                    <h3 class="mb-0">Full Stack Developer Intern</h3>
+                    <span class="badge badge-primary px-3 py-2">Jan 2026 – Jun 2026</span>
+                </div>
+                <p class="company mb-3"><i class="fas fa-building mr-2"></i>A2Z IT Hub, Ahilyanagar</p>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><i class="fas fa-check-circle mr-2" style="color:var(--blue)"></i>Developed and
+                        maintained responsive client websites using HTML, CSS, JavaScript, and Bootstrap.</li>
+                    <li class="mb-2"><i class="fas fa-check-circle mr-2" style="color:var(--blue)"></i>Built backend
+                        functionality with Node.js and Express.js.</li>
+                    <li class="mb-2"><i class="fas fa-check-circle mr-2" style="color:var(--blue)"></i>Integrated MySQL
+                        databases and implemented authentication systems.</li>
+                    <li class="mb-2"><i class="fas fa-check-circle mr-2" style="color:var(--blue)"></i>Worked with REST
+                        APIs and used Git/GitHub for version control.</li>
+                </ul>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- CONTACT SECTION -->
-<section class="contact-section" id="contact">
-  <div class="container">
-    <h2 class="section-title" data-aos="fade-right">Get In Touch</h2>
-    <div class="row">
-      <div class="col-lg-6" data-aos="fade-up">
-        <div class="contact-info-item">
-          <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
-          <div class="contact-detail"><a href="tel:+919021615011">+91-9021615011</a></div>
+    <!-- PROJECTS SECTION -->
+    <section class="projects-section" id="projects">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-right">Projects</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4" data-aos="zoom-in">
+                    <div class="project-card">
+                        <div class="project-body">
+                            <h3 class="project-title">Ultraz E-Commerce Website</h3>
+                            <p>Full-stack e-commerce platform with product management, shopping cart, and order
+                                processing.</p>
+                            <div class="project-tech mt-3">
+                                <span class="tech-badge">HTML</span>
+                                <span class="tech-badge">CSS</span>
+                                <span class="tech-badge">Bootstrap</span>
+                                <span class="tech-badge">JavaScript</span>
+                                <span class="tech-badge">Node.js</span>
+                                <span class="tech-badge">Express.js</span>
+                                <span class="tech-badge">MySQL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="project-card">
+                        <div class="project-body">
+                            <h3 class="project-title">DropXpress – Transport Management</h3>
+                            <p>System to manage vehicles, drivers, trips, and profit/loss analytics for transport
+                                businesses.</p>
+                            <div class="project-tech mt-3">
+                                <span class="tech-badge">Node.js</span>
+                                <span class="tech-badge">Express.js</span>
+                                <span class="tech-badge">MySQL</span>
+                                <span class="tech-badge">HTML</span>
+                                <span class="tech-badge">CSS</span>
+                                <span class="tech-badge">Bootstrap</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="project-card">
+                        <div class="project-body">
+                            <h3 class="project-title">Islamic Educational Portal</h3>
+                            <p>Responsive portal providing Islamic learning resources, articles, and educational
+                                content.</p>
+                            <div class="project-tech mt-3">
+                                <span class="tech-badge">HTML</span>
+                                <span class="tech-badge">CSS</span>
+                                <span class="tech-badge">Bootstrap</span>
+                                <span class="tech-badge">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="project-card">
+                        <div class="project-body">
+                            <h3 class="project-title">Healthy Life Wellness Center</h3>
+                            <p>Wellness website showcasing yoga, meditation, and fitness services with a modern design.
+                            </p>
+                            <div class="project-tech mt-3">
+                                <span class="tech-badge">HTML</span>
+                                <span class="tech-badge">CSS</span>
+                                <span class="tech-badge">Bootstrap</span>
+                                <span class="tech-badge">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="contact-info-item">
-          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-          <div class="contact-detail"><a href="mailto:abujarpathan9284@gmail.com">abujarpathan9284@gmail.com</a></div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-right">Get In Touch</h2>
+            <div class="row">
+                <div class="col-lg-6" data-aos="fade-up">
+                    <div class="contact-info-item">
+                        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div class="contact-detail"><a href="tel:+919021615011">+91-9021615011</a></div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contact-detail"><a
+                                href="mailto:abujarpathan9284@gmail.com">abujarpathan9284@gmail.com</a></div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-icon"><i class="fab fa-linkedin-in"></i></div>
+                        <div class="contact-detail"><a href="https://www.linkedin.com/in/abujar-pathan-2a0a372b8"
+                                target="_blank">linkedin.com/in/abujar-pathan</a></div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-icon"><i class="fab fa-github"></i></div>
+                        <div class="contact-detail"><a href="https://github.com/abujarpathan9284-pixel"
+                                target="_blank">github.com/abujarpathan9284-pixel</a></div>
+                    </div>
+                    <div class="social-contact mt-3">
+                        <a href="https://www.linkedin.com/in/abujar-pathan-2a0a372b8" target="_blank"><i
+                                class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/abujarpathan9284-pixel" target="_blank"><i
+                                class="fab fa-github"></i></a>
+                        <a href="mailto:abujarpathan9284@gmail.com"><i class="fas fa-envelope"></i></a>
+                        <a href="https://wa.me/919021615011" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+
+                    <!-- WhatsApp Direct Button -->
+                    <div class="mt-3">
+                        <a class="btn-whatsapp" href="https://wa.me/919021615011?text=Hello%20Abujar" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- EMAIL FORM with mailto (from Pratik) -->
+                <div class="col-lg-6 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="100">
+                    <h5 class="mb-3" style="font-weight:800;">Send a message (opens Email app)</h5>
+                    <form id="emailForm">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" id="emailName"
+                                placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control form-control-lg" id="emailEmail"
+                                placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control form-control-lg" id="emailMessage" rows="4"
+                                placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-custom w-100">
+                            <i class="fas fa-envelope mr-2"></i> Send via Email
+                        </button>
+                        <div id="emailFormStatus" class="form-status"></div>
+                    </form>
+                    <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--muted2);">
+                        ⚡ Clicking send will open your email app with a pre-filled message.
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="contact-info-item">
-          <div class="contact-icon"><i class="fab fa-linkedin-in"></i></div>
-          <div class="contact-detail"><a href="https://www.linkedin.com/in/abujar-pathan-2a0a372b8" target="_blank">linkedin.com/in/abujar-pathan</a></div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>© 2026 Abujar Firoj Pathan. All rights reserved.</p>
         </div>
-        <div class="contact-info-item">
-          <div class="contact-icon"><i class="fab fa-github"></i></div>
-          <div class="contact-detail"><a href="https://github.com/abujarpathan9284-pixel" target="_blank">github.com/abujarpathan9284-pixel</a></div>
-        </div>
-        <div class="social-contact mt-3">
-          <a href="https://www.linkedin.com/in/abujar-pathan-2a0a372b8" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://github.com/abujarpathan9284-pixel" target="_blank"><i class="fab fa-github"></i></a>
-          <a href="mailto:abujarpathan9284@gmail.com"><i class="fas fa-envelope"></i></a>
-          <a href="https://wa.me/919021615011" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        </div>
+    </footer>
 
-        <!-- WhatsApp Direct Button -->
-        <div class="mt-3">
-          <a class="btn-whatsapp" href="https://wa.me/919021615011?text=Hello%20Abujar" target="_blank">
-            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-          </a>
-        </div>
-      </div>
+    <!-- BACK TO TOP BUTTON (from Pratik) -->
+    <button class="to-top" id="toTop"><i class="fas fa-arrow-up"></i></button>
 
-      <!-- EMAIL FORM with mailto (from Pratik) -->
-      <div class="col-lg-6 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="100">
-        <h5 class="mb-3" style="font-weight:800;">Send a message (opens Email app)</h5>
-        <form id="emailForm">
-          <div class="form-group">
-            <input type="text" class="form-control form-control-lg" id="emailName" placeholder="Your Name" required>
-          </div>
-          <div class="form-group">
-            <input type="email" class="form-control form-control-lg" id="emailEmail" placeholder="Email Address" required>
-          </div>
-          <div class="form-group">
-            <textarea class="form-control form-control-lg" id="emailMessage" rows="4" placeholder="Your Message" required></textarea>
-          </div>
-          <button type="submit" class="btn-custom w-100">
-            <i class="fas fa-envelope mr-2"></i> Send via Email
-          </button>
-          <div id="emailFormStatus" class="form-status"></div>
-        </form>
-        <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--muted2);">
-          ⚡ Clicking send will open your email app with a pre-filled message.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
+    <!-- SCRIPTS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true, offset: 100 });
 
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    <p>© 2026 Abujar Firoj Pathan. All rights reserved.</p>
-  </div>
-</footer>
+        // ===== MOBILE NAV CLOSE ON LINK CLICK (from Pratik) =====
+        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navCollapse = document.getElementById('navbarNav');
+                if (navCollapse.classList.contains('show')) {
+                    $(navCollapse).collapse('hide');
+                }
+            });
+        });
 
-<!-- BACK TO TOP BUTTON (from Pratik) -->
-<button class="to-top" id="toTop"><i class="fas fa-arrow-up"></i></button>
+        // ===== BACK TO TOP (from Pratik) =====
+        const toTop = document.getElementById('toTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) toTop.style.display = 'flex';
+            else toTop.style.display = 'none';
+        });
+        toTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
 
-<!-- SCRIPTS -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init({ duration: 800, once: true, offset: 100 });
+        // ===== RESUME DOWNLOAD (from Pratik) =====
+        function downloadResume() {
+            const link = document.createElement('a');
 
-  // ===== MOBILE NAV CLOSE ON LINK CLICK (from Pratik) =====
-  document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      const navCollapse = document.getElementById('navbarNav');
-      if (navCollapse.classList.contains('show')) {
-        $(navCollapse).collapse('hide');
-      }
-    });
-  });
+            // Upload your resume PDF in the same folder as index.html
+            link.href = 'resume.pdf';
 
-  // ===== BACK TO TOP (from Pratik) =====
-  const toTop = document.getElementById('toTop');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 500) toTop.style.display = 'flex';
-    else toTop.style.display = 'none';
-  });
-  toTop.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+            // Download as PDF
+            link.download = 'Abujar_Pathan_Resume.pdf';
 
-  // ===== RESUME DOWNLOAD (from Pratik) =====
-  function downloadResume() {
-    const resumeText = `PERSONAL INFORMATION
-Name: Abujar Firoj Pathan
-Email: abujarpathan9284@gmail.com
-Mobile: (+91) 9021615011
-LinkedIn: linkedin.com/in/abujar-pathan-2a0a372b8
-GitHub: github.com/abujarpathan9284-pixel
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        // Attach resume download to all buttons
+        ['heroResumeBtn', 'navResumeBtn', 'eduResumeBtn'].forEach(id => {
+            const btn = document.getElementById(id);
+            if (btn) {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    downloadResume();
+                });
+            }
+        });
 
-PROFILE SUMMARY
-Detail-oriented web developer with internship experience in full-stack development.
-Skilled in Node.js, Express.js, SQL, and modern front-end technologies.
-Currently pursuing BBA in Computer Application.
+        // ===== EMAIL FORM with mailto (from Pratik) =====
+        const emailForm = document.getElementById('emailForm');
+        const emailStatus = document.getElementById('emailFormStatus');
+        const emailAddress = 'abujarpathan9284@gmail.com';
 
-KEY SKILLS
-HTML5, CSS3, JavaScript (ES6+), Bootstrap, Node.js, Express.js,
-SQL / MySQL, Git & GitHub, Responsive Design, REST APIs, Postman, VS Code
+        emailForm.addEventListener('submit', (e) => {
+            e.preventDefault();
 
-LANGUAGES
-English (Fluent) | Hindi (Native) | Marathi (Fluent)
+            const name = document.getElementById('emailName').value.trim();
+            const email = document.getElementById('emailEmail').value.trim();
+            const message = document.getElementById('emailMessage').value.trim();
 
-EDUCATION
-BBA (Computer Application)
-K.G. Munoth Arts & Commerce College
-07/2023 – Present
+            if (!name || !email || !message) {
+                emailStatus.className = 'form-status error';
+                emailStatus.textContent = '❌ Please fill in all fields.';
+                return;
+            }
 
-INTERNSHIP
-Web Developer Intern @ A2Z IT Hub, Ahilyanagar (Jan 2026 – Present)
-- Developed and maintained responsive client websites using HTML, CSS, JavaScript, Bootstrap
-- Built backend functionality with Node.js and Express.js
-- Integrated MySQL databases and implemented authentication systems
-- Worked with REST APIs and used Git/GitHub for version control
+            const subject = `New message from ${name}`;
+            const body = `Name: ${name}%0AEmail: ${email}%0A%0AMessage:%0A${message}`;
+            const mailtoLink = `mailto:${emailAddress}?subject=${encodeURIComponent(subject)}&body=${body}`;
 
-PROJECTS
-1. Ultraz E-Commerce Website
-   Full-stack e-commerce platform with product management, shopping cart, and order processing.
-   Tech: HTML, CSS, Bootstrap, JavaScript, Node.js, Express.js, MySQL
+            window.location.href = mailtoLink;
 
-2. DropXpress – Transport Management
-   System to manage vehicles, drivers, trips, and profit/loss analytics for transport businesses.
-   Tech: Node.js, Express.js, MySQL, HTML, CSS, Bootstrap
-
-3. Islamic Educational Portal
-   Responsive portal providing Islamic learning resources, articles, and educational content.
-   Tech: HTML, CSS, Bootstrap, JavaScript
-
-4. Healthy Life Wellness Center
-   Wellness website showcasing yoga, meditation, and fitness services with a modern design.
-   Tech: HTML, CSS, Bootstrap, JavaScript`;
-
-    const blob = new Blob([resumeText], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'Abujar_Pathan_Resume.txt';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  }
-
-  // Attach resume download to all buttons
-  ['heroResumeBtn', 'navResumeBtn', 'eduResumeBtn'].forEach(id => {
-    const btn = document.getElementById(id);
-    if (btn) {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        downloadResume();
-      });
-    }
-  });
-
-  // ===== EMAIL FORM with mailto (from Pratik) =====
-  const emailForm = document.getElementById('emailForm');
-  const emailStatus = document.getElementById('emailFormStatus');
-  const emailAddress = 'abujarpathan9284@gmail.com';
-
-  emailForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const name    = document.getElementById('emailName').value.trim();
-    const email   = document.getElementById('emailEmail').value.trim();
-    const message = document.getElementById('emailMessage').value.trim();
-
-    if (!name || !email || !message) {
-      emailStatus.className = 'form-status error';
-      emailStatus.textContent = '❌ Please fill in all fields.';
-      return;
-    }
-
-    const subject = `New message from ${name}`;
-    const body    = `Name: ${name}%0AEmail: ${email}%0A%0AMessage:%0A${message}`;
-    const mailtoLink = `mailto:${emailAddress}?subject=${encodeURIComponent(subject)}&body=${body}`;
-
-    window.location.href = mailtoLink;
-
-    emailStatus.className = 'form-status success';
-    emailStatus.textContent = '✅ Email app opened. Just press send!';
-    emailForm.reset();
-  });
-</script>
+            emailStatus.className = 'form-status success';
+            emailStatus.textContent = '✅ Email app opened. Just press send!';
+            emailForm.reset();
+        });
+    </script>
 </body>
+
 </html>
